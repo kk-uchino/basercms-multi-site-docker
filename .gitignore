@@ -1,0 +1,5 @@
+apache/conf/httpd-vhosts.conf
+apache/logs/*
+data/*
+mailpit/*
+phpmyadmin/*

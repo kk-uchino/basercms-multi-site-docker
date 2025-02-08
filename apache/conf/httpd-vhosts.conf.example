@@ -1,0 +1,91 @@
+<Directory "/var/www/html/">
+    Options FollowSymLinks
+    AllowOverride All
+    Require all granted
+</Directory>
+
+<VirtualHost *:443>
+    SSLEngine on
+    SSLCertificateFile /usr/local/apache2/conf/server.crt
+    SSLCertificateKeyFile /usr/local/apache2/conf/server.key
+</VirtualHost>
+
+<VirtualHost *:443>
+    DocumentRoot "/var/www/html/example"
+    ServerName example.localhost
+
+    ErrorLog /usr/local/apache2/logs/example.localhost_error.log
+    CustomLog /usr/local/apache2/logs/example.localhost_access.log combined
+</VirtualHost>
+
+<VirtualHost *:443>
+    DocumentRoot "/var/www/html/example-php84"
+    ServerName example-php84.localhost
+
+    <FilesMatch \.php$>
+        SetHandler "proxy:fcgi://php84-fpm:9000"
+    </FilesMatch>
+</VirtualHost>
+
+<VirtualHost *:443>
+    DocumentRoot "/var/www/html/example-php83"
+    ServerName example-php83.localhost
+
+    <FilesMatch \.php$>
+        SetHandler "proxy:fcgi://php83-fpm:9000"
+    </FilesMatch>
+</VirtualHost>
+
+<VirtualHost *:443>
+    DocumentRoot "/var/www/html/example-php82"
+    ServerName example-php82.localhost
+
+    <FilesMatch \.php$>
+        SetHandler "proxy:fcgi://php82-fpm:9000"
+    </FilesMatch>
+</VirtualHost>
+
+<VirtualHost *:443>
+    DocumentRoot "/var/www/html/example-php81"
+    ServerName example-php81.localhost
+
+    <FilesMatch \.php$>
+        SetHandler "proxy:fcgi://php81-fpm:9000"
+    </FilesMatch>
+</VirtualHost>
+
+<VirtualHost *:443>
+    DocumentRoot "/var/www/html/example-php80"
+    ServerName example-php80.localhost
+
+    <FilesMatch \.php$>
+        SetHandler "proxy:fcgi://php80-fpm:9000"
+    </FilesMatch>
+</VirtualHost>
+
+<VirtualHost *:443>
+    DocumentRoot "/var/www/html/example-php74"
+    ServerName example-php74.localhost
+
+    <FilesMatch \.php$>
+        SetHandler "proxy:fcgi://php74-fpm:9000"
+    </FilesMatch>
+</VirtualHost>
+
+<VirtualHost *:443>
+    DocumentRoot "/var/www/html/example-php72"
+    ServerName example-php72.localhost
+
+    <FilesMatch \.php$>
+        SetHandler "proxy:fcgi://php72-fpm:9000"
+    </FilesMatch>
+</VirtualHost>
+
+<VirtualHost *:443>
+    DocumentRoot "/var/www/html/example-php56"
+    ServerName example-php56.localhost
+
+    <FilesMatch \.php$>
+        SetHandler "proxy:fcgi://php56-fpm:9000"
+    </FilesMatch>
+</VirtualHost>

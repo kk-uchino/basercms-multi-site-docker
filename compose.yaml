@@ -1,0 +1,155 @@
+services:
+  apache:
+    container_name: basercms-multi-site-apache
+    build:
+      context: ./apache
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./apache/conf/httpd-vhosts.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf:ro
+      - ./apache/logs:/usr/local/apache2/logs
+      - ../:/var/www/html/
+    environment:
+      TZ: Asia/Tokyo
+
+  php84-fpm:
+    container_name: basercms-multi-site-php84-fpm
+    build:
+      context: ./php84-fpm
+      dockerfile: Dockerfile
+    volumes:
+      - ../:/var/www/html
+
+  php83-fpm:
+    container_name: basercms-multi-site-php83-fpm
+    build:
+      context: ./php83-fpm
+      dockerfile: Dockerfile
+    volumes:
+      - ../:/var/www/html
+
+  php82-fpm:
+    container_name: basercms-multi-site-php82-fpm
+    build:
+      context: ./php82-fpm
+      dockerfile: Dockerfile
+    volumes:
+      - ../:/var/www/html
+
+  php81-fpm:
+    container_name: basercms-multi-site-php81-fpm
+    build:
+      context: ./php81-fpm
+      dockerfile: Dockerfile
+    volumes:
+      - ../:/var/www/html
+
+  php80-fpm:
+    container_name: basercms-multi-site-php80-fpm
+    build:
+      context: ./php80-fpm
+      dockerfile: Dockerfile
+    volumes:
+      - ../:/var/www/html
+
+  php74-fpm:
+    container_name: basercms-multi-site-php74-fpm
+    build:
+      context: ./php74-fpm
+      dockerfile: Dockerfile
+    volumes:
+      - ../:/var/www/html
+
+  php72-fpm:
+    container_name: basercms-multi-site-php72-fpm
+    build:
+      context: ./php72-fpm
+      dockerfile: Dockerfile
+    volumes:
+      - ../:/var/www/html
+
+  php56-fpm:
+    container_name: basercms-multi-site-php56-fpm
+    build:
+      context: ./php56-fpm
+      dockerfile: Dockerfile
+    volumes:
+      - ../:/var/www/html
+
+  mysql84:
+    container_name: basercms-multi-site-mysql84
+    image: mysql:8.4
+    volumes:
+      - ./data/mysql84:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: basercms
+    command:
+      [
+        "mysqld",
+        "--character-set-server=utf8mb4",
+        "--collation-server=utf8mb4_general_ci",
+        "--default-time-zone=+09:00",
+      ]
+
+  mysql80:
+    container_name: basercms-multi-site-mysql80
+    image: mysql:8.0
+    volumes:
+      - ./data/mysql80:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: basercms
+    command:
+      [
+        "mysqld",
+        "--character-set-server=utf8mb4",
+        "--collation-server=utf8mb4_general_ci",
+        "--default-time-zone=+09:00",
+      ]
+
+  mysql57:
+    container_name: basercms-multi-site-mysql57
+    image: mysql:5.7
+    platform: linux/amd64
+    volumes:
+      - ./data/mysql57:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: basercms
+    command:
+      [
+        "mysqld",
+        "--character-set-server=utf8mb4",
+        "--collation-server=utf8mb4_general_ci",
+        "--default-time-zone=+09:00",
+      ]
+
+  phpmyadmin:
+    container_name: basercms-multi-site-phpmyadmin
+    image: phpmyadmin:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./phpmyadmin/sessions:/sessions
+    environment:
+      PMA_HOSTS: mysql57,mysql80,mysql84
+      PMA_USER: root
+      PMA_PASSWORD: root
+    depends_on:
+      - mysql57
+      - mysql80
+      - mysql84
+
+  mailpit:
+    container_name: basercms-multi-site-mailpit
+    image: axllent/mailpit:latest
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+    volumes:
+      - ./mailpit/data:/data
+    environment:
+      MP_DATA_FILE: /data/mailpit.db
