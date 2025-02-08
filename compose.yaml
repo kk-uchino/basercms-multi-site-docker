@@ -20,6 +20,7 @@ services:
       context: ./php84-fpm
       dockerfile: Dockerfile
     volumes:
+      - ./php84-fpm/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
       - ../:/var/www/html
 
   php83-fpm:
@@ -28,6 +29,7 @@ services:
       context: ./php83-fpm
       dockerfile: Dockerfile
     volumes:
+      - ./php83-fpm/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
       - ../:/var/www/html
 
   php82-fpm:
@@ -36,6 +38,7 @@ services:
       context: ./php82-fpm
       dockerfile: Dockerfile
     volumes:
+      - ./php82-fpm/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
       - ../:/var/www/html
 
   php81-fpm:
@@ -44,6 +47,7 @@ services:
       context: ./php81-fpm
       dockerfile: Dockerfile
     volumes:
+      - ./php81-fpm/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
       - ../:/var/www/html
 
   php80-fpm:
@@ -52,6 +56,7 @@ services:
       context: ./php80-fpm
       dockerfile: Dockerfile
     volumes:
+      - ./php80-fpm/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
       - ../:/var/www/html
 
   php74-fpm:
@@ -60,6 +65,7 @@ services:
       context: ./php74-fpm
       dockerfile: Dockerfile
     volumes:
+      - ./php74-fpm/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
       - ../:/var/www/html
 
   php72-fpm:
@@ -68,6 +74,7 @@ services:
       context: ./php72-fpm
       dockerfile: Dockerfile
     volumes:
+      - ./php72-fpm/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
       - ../:/var/www/html
 
   php56-fpm:
@@ -76,6 +83,7 @@ services:
       context: ./php56-fpm
       dockerfile: Dockerfile
     volumes:
+      - ./php56-fpm/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
       - ../:/var/www/html
 
   mysql84:
