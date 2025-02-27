@@ -146,6 +146,8 @@ services:
       PMA_HOSTS: mysql57,mysql80,mysql84
       PMA_USER: root
       PMA_PASSWORD: root
+      MEMORY_LIMIT: 1024M
+      UPLOAD_LIMIT: 1024M
     depends_on:
       - mysql57
       - mysql80
