@@ -10,6 +10,7 @@ RUN sed -i -e '/^#LoadModule ssl_module modules\/mod_ssl.so/s/^#//' \
     -e '/^#LoadModule socache_shmcb_module modules\/mod_socache_shmcb.so/s/^#//' \
     -e '/^#LoadModule proxy_module modules\/mod_proxy.so/s/^#//' \
     -e '/^#LoadModule proxy_fcgi_module modules\/mod_proxy_fcgi.so/s/^#//' \
+    -e '/^#LoadModule rewrite_module modules\/mod_rewrite.so/s/^#//' \
     -e '/^#Include conf\/extra\/httpd-ssl.conf/s/^#//' \
     -e '/^#Include conf\/extra\/httpd-vhosts.conf/s/^#//' \
     /usr/local/apache2/conf/httpd.conf
